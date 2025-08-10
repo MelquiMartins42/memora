@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 const buttonVariants = cva(
-  'flex items-center justify-center h-14 p-3 text-lg rounded-full transition-colors duration-300 outline-none',
+  'flex items-center h-14 p-3 gap-2 text-lg rounded-full transition-colors duration-300 outline-none',
   {
     variants: {
       variant: {
@@ -14,6 +14,18 @@ const buttonVariants = cva(
         secondary:
           'border border-transparent text-[#606060] hover:text-[#242424] hover:bg-white hover:border-[#E1E1E1] hover:shadow hover:shadow-black/5 cursor-pointer transition-colors',
       },
+      alignment: {
+        start: 'justify-start',
+        center: 'justify-center',
+        end: 'justify-end',
+      },
+      buttonWidth: {
+        full: 'w-full',
+        fit: 'w-fit',
+        lg: '',
+        md: '',
+        sm: 'w-14',
+      },
       active: {
         true: 'opacity-50 cursor-not-allowed',
         false: 'cursor-pointer',
@@ -21,6 +33,8 @@ const buttonVariants = cva(
     },
     defaultVariants: {
       variant: 'default',
+      alignment: 'center',
+      buttonWidth: 'fit',
       active: false,
     },
   },
@@ -34,6 +48,8 @@ export interface ButtonProps
 }
 
 const Button: React.FC<ButtonProps> = ({
+  buttonWidth,
+  alignment,
   className,
   children,
   isActive,
@@ -45,6 +61,8 @@ const Button: React.FC<ButtonProps> = ({
     active: !!isActive,
     variant,
     className,
+    alignment,
+    buttonWidth,
   })
 
   if (href) {
